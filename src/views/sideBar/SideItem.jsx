@@ -11,7 +11,9 @@ function SideItem({ data }) {
   }))
   return (
     <div ref={drag}>
-      <p>SideItem</p>
+      <p>
+        { data.name }
+      </p>
     </div>
   );
 }

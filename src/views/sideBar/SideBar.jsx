@@ -1,13 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import style from './sideBar.module.css'
 import SideItem from './SideItem'
+import { getComps } from '../../api/internal'
 
 function SideBar() {
-  const [comps] = useState([
-    { cid: 1, name: 'comp1', type: 'box', isSideItem: true },
-    { cid: 2, name: 'comp2', type: 'box', isSideItem: true },
-    { cid: 3, name: 'comp3', type: 'box', isSideItem: true }, 
-  ])
+  const [comps, setComps] = useState([])
+  useEffect(() => {
+    getComps()
+      .then(data => {
+        setComps(data)
+      })
+  }, [])
 
   return (
     <div className={style.sidebar}>

@@ -1,7 +1,7 @@
 import { useDrop } from "react-dnd"
 import PropTypes from "prop-types"
 import style from './stage.module.css'
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useState } from "react"
 import Box from "./Box"
 
 function Stage() {
@@ -14,9 +14,10 @@ function Stage() {
   const generateBox = (item) => {
     return {
       id: boxes.length + 1,
-      cid: item.cid,
       left: 0,
-      top: 0
+      top: 0,
+      cid: item.cid,
+      ...item.payload
     }
   }
   const moveBox = useCallback((id, left, top) => {

@@ -1,6 +1,21 @@
 import { useDrag } from "react-dnd"
 import PropTypes from "prop-types"
 import style from './box.module.css'
+import EchartsBox from '../echartsBox/EchartsBox'
+import React from "react"
+
+const ParseMap = {
+  0: {
+    cid: 0,
+    name: 'empty',
+    element: null
+  },
+  1: {
+    cid: 1,
+    name: 'echarts',
+    element: <EchartsBox />
+  }
+}
 
 function Box({ data, children }) {
   const [{ isDragging }, drag] = useDrag(() => ({
@@ -10,7 +25,7 @@ function Box({ data, children }) {
       isDragging: monitor.isDragging()
     })
   }))
-  console.log(isDragging, 'isDragging')
+  const element = ParseMap[data.cid].element
   if (isDragging) {
     return <div ref={drag}></div>
   }
@@ -23,6 +38,9 @@ function Box({ data, children }) {
     }}>
       <header>box</header>
       {children}
+      {
+        element ? React.cloneElement(element, { options: data.options, preset: data.preset }) : void 0
+      }
     </div>
   )
 }
