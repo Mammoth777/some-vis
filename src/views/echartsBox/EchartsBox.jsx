@@ -7,7 +7,6 @@ import presets from './presets';
  * @returns 
  */
 function EchartsBox({ options, preset }) {
-  console.log(options, preset, 'options, preset')
   if (presets[preset]) {
     options = presets[preset];
   }

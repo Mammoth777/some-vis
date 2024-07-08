@@ -18,29 +18,38 @@ const ParseMap = {
 }
 
 function Box({ data, children }) {
-  const [{ isDragging }, drag] = useDrag(() => ({
-    type: 'box',
-    item: data,
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging()
+  const [{ isDragging }, drag] = useDrag(() => {
+    return ({
+      type: 'box',
+      item: data,
+      collect: (monitor) => ({
+        isDragging: monitor.isDragging()
+      })
     })
-  }))
+  })
   const element = ParseMap[data.cid].element
+  let zIndex = 0
   if (isDragging) {
-    return <div ref={drag}></div>
+    zIndex = 100
+    return
+  } else {
+    zIndex = 1
   }
   const leftValue = data.left + 'px'
   const topValue = data.top + 'px'
 
+  const innerEle = element ? React.cloneElement(element, { options: data.options, preset: data.preset }) : null
+
   return (
     <div className={style.box} ref={drag} style={{
       left: leftValue, top: topValue,
-      ...data.style
+      ...data.style,
+      zIndex
     }}>
       <header>box</header>
       {children}
       {
-        element ? React.cloneElement(element, { options: data.options, preset: data.preset }) : void 0
+        innerEle
       }
     </div>
   )

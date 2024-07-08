@@ -19,7 +19,7 @@ function SideBar() {
         {
           comps.map(comp => {
             return (
-              <SideItem key={comp.cid} data={comp} />
+              <SideItem key={comp.id} data={comp} />
             )
           })
         }

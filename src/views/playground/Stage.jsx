@@ -21,7 +21,6 @@ function Stage() {
     }
   }
   const moveBox = useCallback((id, left, top) => {
-    console.log(boxes, 'boxes callback')
     const box = boxes.find(box => box.id === id)
     if (box) {
       box.left = left

@@ -1,30 +1,43 @@
 export const getComps = async () => {
   return [
     {
+      id: 1,
       cid: 1,
-      name: 'comp1',
+      name: '折线图',
       type: 'box',
       isSideItem: true,
       payload: {
         preset: 'line', options: {}, style: {
-          width: '300px',
-          height: '300px'
+          width: '400px',
+          height: '350px'
         }
       }
     },
     {
-      cid: 2,
-      name: 'comp2',
+      id: 2,
+      cid: 1,
+      name: '柱状图',
       type: 'box',
       isSideItem: true,
-      payload: { preset: 'line', options: {} }
+      payload: {
+        preset: 'bar', options: {}, style: {
+          width: '400px',
+          height: '350px'
+        }
+      }
     },
     {
-      cid: 3,
-      name: 'comp3',
+      id: 3,
+      cid: 1,
+      name: '饼图',
       type: 'box',
       isSideItem: true,
-      payload: { preset: 'line', options: {} }
+      payload: {
+        preset: 'pie', options: {}, style: {
+          width: '400px',
+          height: '350px'
+        }
+      }
     },
   ]
 }
