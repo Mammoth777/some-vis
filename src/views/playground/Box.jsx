@@ -34,7 +34,8 @@ function Box({ data, children }) {
 
   return (
     <div className={style.box} ref={drag} style={{
-      left: leftValue, top: topValue
+      left: leftValue, top: topValue,
+      ...data.style
     }}>
       <header>box</header>
       {children}

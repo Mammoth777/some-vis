@@ -5,7 +5,12 @@ export const getComps = async () => {
       name: 'comp1',
       type: 'box',
       isSideItem: true,
-      payload: { preset: 'line', options: {} }
+      payload: {
+        preset: 'line', options: {}, style: {
+          width: '300px',
+          height: '300px'
+        }
+      }
     },
     {
       cid: 2,
