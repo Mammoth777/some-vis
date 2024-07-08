@@ -3,12 +3,14 @@ import PropTypes from "prop-types"
 import style from './box.module.css'
 import EchartsBox from '../echartsBox/EchartsBox'
 import React from "react"
+import LayoutBox from "../layoutBox/LayoutBox"
+import EmptyBox from '../emptyBox/EmptyBox'
 
 const ParseMap = {
   0: {
     cid: 0,
     name: 'empty',
-    element: null
+    element: <LayoutBox />
   },
   1: {
     cid: 1,
@@ -17,7 +19,7 @@ const ParseMap = {
   }
 }
 
-function Box({ data, children }) {
+function Box({ data }) {
   const [{ isDragging }, drag] = useDrag(() => {
     return ({
       type: 'box',
@@ -38,7 +40,7 @@ function Box({ data, children }) {
   const leftValue = data.left + 'px'
   const topValue = data.top + 'px'
 
-  const innerEle = element ? React.cloneElement(element, { options: data.options, preset: data.preset }) : null
+  const innerEle = element ? React.cloneElement(element, { options: data.options, preset: data.preset }) : <EmptyBox />
 
   return (
     <div className={style.box} ref={drag} style={{
@@ -46,8 +48,6 @@ function Box({ data, children }) {
       ...data.style,
       zIndex
     }}>
-      <header>box</header>
-      {children}
       {
         innerEle
       }

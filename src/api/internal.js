@@ -9,7 +9,7 @@ export const getComps = async () => {
       payload: {
         preset: 'line', options: {}, style: {
           width: '400px',
-          height: '350px'
+          height: '250px'
         }
       }
     },
@@ -22,7 +22,7 @@ export const getComps = async () => {
       payload: {
         preset: 'bar', options: {}, style: {
           width: '400px',
-          height: '350px'
+          height: '250px'
         }
       }
     },
@@ -35,9 +35,21 @@ export const getComps = async () => {
       payload: {
         preset: 'pie', options: {}, style: {
           width: '400px',
-          height: '350px'
+          height: '250px'
         }
       }
     },
+    {
+      id: 4,
+      cid: 0,
+      name: '容器',
+      isSideItem: true,
+      payload: {
+        preset: 'container', style: {
+          width: '400px',
+          height: '400px'
+        }
+      }
+    }
   ]
 }
