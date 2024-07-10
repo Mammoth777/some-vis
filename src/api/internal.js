@@ -6,11 +6,12 @@ export const getComps = async () => {
       name: '折线图',
       type: 'box',
       isSideItem: true,
+      box: {
+        w: 400,
+        h: 250,
+      },
       payload: {
-        preset: 'line', options: {}, style: {
-          width: '400px',
-          height: '250px'
-        }
+        preset: 'line', options: {}
       }
     },
     {
@@ -19,11 +20,12 @@ export const getComps = async () => {
       name: '柱状图',
       type: 'box',
       isSideItem: true,
+      box: {
+        w: 400,
+        h: 250
+      },
       payload: {
-        preset: 'bar', options: {}, style: {
-          width: '400px',
-          height: '250px'
-        }
+        preset: 'bar', options: {}
       }
     },
     {
@@ -32,11 +34,12 @@ export const getComps = async () => {
       name: '饼图',
       type: 'box',
       isSideItem: true,
+      box: {
+        w: 400,
+        h: 250
+      },
       payload: {
-        preset: 'pie', options: {}, style: {
-          width: '400px',
-          height: '250px'
-        }
+        preset: 'pie', options: {}
       }
     },
     {
@@ -44,6 +47,10 @@ export const getComps = async () => {
       cid: 0,
       name: '容器',
       isSideItem: true,
+      box: {
+        w: 400,
+        h: 400
+      },
       payload: {
         preset: 'container', style: {
           width: '400px',

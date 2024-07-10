@@ -10,7 +10,10 @@ function EchartsBox({ options, preset }) {
   if (presets[preset]) {
     options = presets[preset];
   }
-  return <ReactECharts option={options} />;
+  return <ReactECharts option={options} style={{
+    width: '100%',
+    height: '100%'
+  }} />;
 }
 
 EchartsBox.propTypes = {

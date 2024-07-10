@@ -1,16 +1,17 @@
 import { useDrag } from "react-dnd"
 import PropTypes from "prop-types"
 import style from './box.module.css'
-import EchartsBox from '../echartsBox/EchartsBox'
 import React from "react"
-import LayoutBox from "../layoutBox/LayoutBox"
-import EmptyBox from '../emptyBox/EmptyBox'
+import GroupBox from "../boxes/groupBox/GroupBox"
+import EchartsBox from '../boxes/echartsBox/EchartsBox'
+import EmptyBox from '../boxes/emptyBox/EmptyBox'
+import { BoxMeta } from "./boxUtils"
 
 const ParseMap = {
   0: {
     cid: 0,
     name: 'empty',
-    element: <LayoutBox />
+    element: <GroupBox />
   },
   1: {
     cid: 1,
@@ -19,17 +20,17 @@ const ParseMap = {
   }
 }
 
-function Box({ data }) {
+function Box({ boxMeta }) {
   const [{ isDragging }, drag] = useDrag(() => {
     return ({
       type: 'box',
-      item: data,
+      item: boxMeta,
       collect: (monitor) => ({
         isDragging: monitor.isDragging()
       })
     })
   })
-  const element = ParseMap[data.cid].element
+  const element = ParseMap[boxMeta.cid].element
   let zIndex = 0
   if (isDragging) {
     zIndex = 100
@@ -37,15 +38,17 @@ function Box({ data }) {
   } else {
     zIndex = 1
   }
-  const leftValue = data.left + 'px'
-  const topValue = data.top + 'px'
+  const leftValue = boxMeta.x + 'px'
+  const topValue = boxMeta.y + 'px'
+  const widthValue = boxMeta.w + 'px'
+  const heightValue = boxMeta.h + 'px'
 
-  const innerEle = element ? React.cloneElement(element, { options: data.options, preset: data.preset }) : <EmptyBox />
+  const innerEle = element ? React.cloneElement(element, { options: boxMeta.options, preset: boxMeta.preset }) : <EmptyBox />
 
   return (
     <div className={style.box} ref={drag} style={{
       left: leftValue, top: topValue,
-      ...data.style,
+      width: widthValue, height: heightValue,
       zIndex
     }}>
       {
@@ -57,7 +60,7 @@ function Box({ data }) {
 
 Box.propTypes = {
   children: PropTypes.node,
-  data: PropTypes.object.isRequired
+  boxMeta: PropTypes.instanceOf(BoxMeta).isRequired
 }
 
 export default Box
