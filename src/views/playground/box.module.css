@@ -8,3 +8,8 @@
   position: absolute;
   overflow: hidden;
 }
+
+.hide {
+  transition: all .1s;
+  opacity: 0;
+}

@@ -30,13 +30,16 @@ function Box({ boxMeta }) {
       })
     })
   })
+  console.log('box')
   const element = ParseMap[boxMeta.cid].element
   let zIndex = 0
+  let hide = false
   if (isDragging) {
     zIndex = 100
-    return
+    hide = true
   } else {
     zIndex = 1
+    hide = false
   }
   const leftValue = boxMeta.x + 'px'
   const topValue = boxMeta.y + 'px'
@@ -46,7 +49,7 @@ function Box({ boxMeta }) {
   const innerEle = element ? React.cloneElement(element, { options: boxMeta.options, preset: boxMeta.preset }) : <EmptyBox />
 
   return (
-    <div className={style.box} ref={drag} style={{
+    <div className={`${style.box} ${hide ? style.hide : ''}`} ref={drag} style={{
       left: leftValue, top: topValue,
       width: widthValue, height: heightValue,
       zIndex
