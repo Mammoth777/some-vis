@@ -1,6 +1,6 @@
 import { useDrag } from "react-dnd";
 import PropTypes from 'prop-types';
-
+import style from './sideBar.module.css';
 function SideItem({ data }) {
   const [, drag] = useDrag(() => ({
     type: 'box',
@@ -10,11 +10,11 @@ function SideItem({ data }) {
     })
   }))
   return (
-    <div ref={drag}>
+    <li ref={drag} className={style.item}>
       <p>
         { data.name }
       </p>
-    </div>
+    </li>
   );
 }
 

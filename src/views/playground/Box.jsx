@@ -20,7 +20,7 @@ const ParseMap = {
   }
 }
 
-function Box({ boxMeta }) {
+function Box({ boxMeta, zoom }) {
   const [{ isDragging }, drag] = useDrag(() => {
     return ({
       type: 'box',
@@ -41,10 +41,11 @@ function Box({ boxMeta }) {
     zIndex = 1
     hide = false
   }
-  const leftValue = boxMeta.x + 'px'
-  const topValue = boxMeta.y + 'px'
-  const widthValue = boxMeta.w + 'px'
-  const heightValue = boxMeta.h + 'px'
+  let leftValue = boxMeta.x + 'px'
+  let topValue = boxMeta.y + 'px'
+  let widthValue = boxMeta.w + 'px'
+  let heightValue = boxMeta.h + 'px'
+  console.log(zoom)
 
   const innerEle = element ? React.cloneElement(element, { options: boxMeta.options, preset: boxMeta.preset }) : <EmptyBox />
 
@@ -63,7 +64,8 @@ function Box({ boxMeta }) {
 
 Box.propTypes = {
   children: PropTypes.node,
-  boxMeta: PropTypes.instanceOf(BoxMeta).isRequired
+  boxMeta: PropTypes.instanceOf(BoxMeta).isRequired,
+  zoom: PropTypes.number.isRequired,
 }
 
 export default Box
